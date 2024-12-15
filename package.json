@@ -1,6 +1,6 @@
 {
   "name": "emoji-lib-4-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "First try at an emoji library",
   "main": "index.js",
   "scripts": {
