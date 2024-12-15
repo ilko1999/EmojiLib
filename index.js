@@ -1,29 +1,49 @@
 import fs from "fs";
+import zlib from "zlib";
 
-const emj1 = JSON.parse(
-  fs.readFileSync("./utils/emojisBase64Segment1.json", "utf-8")
-);
-const emj2 = JSON.parse(
-  fs.readFileSync("./utils/emojisBase64Segment2.json", "utf-8")
-);
-const emj3 = JSON.parse(
-  fs.readFileSync("./utils/emojisBase64Segment3.json", "utf-8")
-);
-const emj4 = JSON.parse(
-  fs.readFileSync("./utils/emojisBase64Segment4.json", "utf-8")
-);
-const emj5 = JSON.parse(
-  fs.readFileSync("./utils/emojisBase64Segment5.json", "utf-8")
-);
-const emj6 = JSON.parse(
-  fs.readFileSync("./utils/emojisBase64Segment6.json", "utf-8")
-);
-const emj7 = JSON.parse(
-  fs.readFileSync("./utils/emojisBase64Segment7.json", "utf-8")
-);
-const emj8 = JSON.parse(
-  fs.readFileSync("./utils/emojisBase64Segment8.json", "utf-8")
-);
+// function compressFile(inputPath, outputPath) {
+//   const input = fs.createReadStream(inputPath);
+//   const output = fs.createWriteStream(outputPath);
+//   const gzip = zlib.createGzip();
+
+//   input.pipe(gzip).pipe(output);
+
+//   output.on("finish", () => {
+//     console.log(`File compressed: ${outputPath}`);
+//   });
+// }
+
+function readCompressedJson(filePath) {
+  return new Promise((resolve, reject) => {
+    const gunzip = zlib.createGunzip();
+    const input = fs.createReadStream(filePath);
+    let jsonString = "";
+
+    input
+      .pipe(gunzip)
+      .on("data", (chunk) => {
+        jsonString += chunk.toString();
+      })
+      .on("end", () => {
+        try {
+          const jsonData = JSON.parse(jsonString); // Parse JSON
+          resolve(jsonData);
+        } catch (err) {
+          reject(new Error("Error parsing JSON: " + err.message));
+        }
+      })
+      .on("error", reject);
+  });
+}
+
+const emj1 = await readCompressedJson("./utils/emojisBase64Segment1.json.gz");
+const emj2 = await readCompressedJson("./utils/emojisBase64Segment2.json.gz");
+const emj3 = await readCompressedJson("./utils/emojisBase64Segment3.json.gz");
+const emj4 = await readCompressedJson("./utils/emojisBase64Segment4.json.gz");
+const emj5 = await readCompressedJson("./utils/emojisBase64Segment5.json.gz");
+const emj6 = await readCompressedJson("./utils/emojisBase64Segment6.json.gz");
+const emj7 = await readCompressedJson("./utils/emojisBase64Segment7.json.gz");
+const emj8 = await readCompressedJson("./utils/emojisBase64Segment8.json.gz");
 
 const segmentedEmojis = {
   ...emj1.emojis,
@@ -63,8 +83,8 @@ const emojiFuncs = {
 
 export default emojiFuncs;
 
-const unicode = "U+1F600";
-const name = "grinning-face";
+// const unicode = "U+1F600";
+// const name = "grinning-face";
 
-console.log(emojiFuncs.getEmojiByUnicode(unicode)); // Prints base64 string of the emoji
-console.log(emojiFuncs.getEmojiByName(name)); // Prints base64 string of the emoji
+// console.log(emojiFuncs.getEmojiByUnicode(unicode)); // Prints base64 string of the emoji
+// console.log(emojiFuncs.getEmojiByName(name)); // Prints base64 string of the emoji
