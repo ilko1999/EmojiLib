@@ -6,14 +6,14 @@ This library provides a simple way to work with a large collection of emojis in 
 
 - **Retrieve Emoji by Unicode**: Fetch a Base64-encoded emoji using its Unicode representation.
 - **Retrieve Emoji by Name**: Fetch a Base64-encoded emoji using its descriptive name.
-- **Access All Emojis**: Get the entire emoji dataset in one object.
+- **Access All Emojis**: Get the entire emoji dataset in one object. (WIP 🚧)
 
 ## Installation
 
 1. Clone the repository or download the source files.
 2. Ensure the `utils` folder contains the segmented emoji JSON files:
 
-##### utils/emojisBase64Segment1.json utils/emojisBase64Segment2.json ... utils/emojisBase64Segment8.json
+##### utils/emojisBase64Segment1.json.gz utils/emojisBase64Segment2.json.gz ... utils/emojisBase64Segment8.json.gz
 
 3. Import the library in your project:
 
