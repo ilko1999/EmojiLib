@@ -18,7 +18,7 @@ This library provides a simple way to work with a large collection of emojis in 
 3. Import the library in your project:
 
 ```javascript
-import emojiFuncs from "emoji-lib-4-js";
+import emojiUtils from "emoji-lib-4-js";
 ```
 
 ## Usage
@@ -33,8 +33,8 @@ To retrieve an emoji by its Unicode representation, use the `getEmojiByUnicode` 
 const unicode = "U+1F600"; // Unicode representation of the emoji
 const name = "grinning-face"; // Descriptive name of the emoji
 
-console.log(emojiFuncs.getEmojiByUnicode(unicode)); // Prints base64 string of the emoji
-console.log(emojiFuncs.getEmojiByName(name)); // Prints base64 string of the emoji
+console.log(await emojiUtils.getEmojiByUnicode(unicode)); // Prints base64 string of the emoji
+console.log(await emojiUtils.getEmojiByName(name)); // Prints base64 string of the emoji
 ```
 
 ## Emoji Dataset Structure
