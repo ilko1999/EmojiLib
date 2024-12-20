@@ -1,10 +1,10 @@
 {
   "name": "emoji-lib-4-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "First try at an emoji library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/**/*.test.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +19,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ilko1999/EmojiLib.git"
+  },
+  "devDependencies": {
+    "chai": "^5.1.2",
+    "mocha": "^11.0.1",
+    "sinon": "^19.0.2"
   }
 }
